@@ -17,7 +17,7 @@ class SonarQubePluginTest {
     public static void setUp(){
         project = ProjectBuilder.builder().build()
 
-        project.apply plugin: 'weltn24-sonarqube'
+        project.apply plugin: 'de.weltn24.sonarqube'
     }
 
     @Test
