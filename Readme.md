@@ -28,22 +28,22 @@ We use this tasks locally before pushing code changes to Git and on our PR check
 
 ### Configuration
 
-| Key | Default value | Applied for tasks| Mandatory |
-| ---- | ---- | ------------- | ---------- |
-|sonar.projectName| ${project.rootProject.name} | sonarRunner,  sonarRunnerPreview | true |
-|sonar.sourceEncoding| UTF-8 | sonarRunner,  sonarRunnerPreview | true |
-|sonar.jacoco.itReportPath| ${project.buildDir}/jacoco/integrationTest.exec | sonarRunner | true |
-|sonar.host.url|  | sonarRunner,  sonarRunnerPreview | true |
-|sonar.jdbc.url|  | sonarRunner | true |
-|sonar.jdbc.driverClassName|  com.mysql.jdbc.Driver | sonarRunner | true |
-|sonar.jdbc.username|  sonar | sonarRunner | true |
-|sonar.jdbc.password|   | sonarRunner | true |
-|sonar.login | sonar | sonarRunner, sonarRunnerPreview | true |
-|sonar.password\* |  | sonarRunner, sonarRunnerPreview | true |
-|sonar.github.login |  | sonarRunner | false |
-|sonar.github.oauth |  | sonarRunner | false |
-|sonar.github.repository |  | sonarRunner | false |
-|sonar.github.pullRequest |  | sonarRunner | false |
+| Key                       | Default value                                   | Applied for tasks               | Mandatory |
+| ------------------------- | ----------------------------------------------- | ------------------------------- | --------- |
+|sonar.projectName          | ${project.rootProject.name}                     | sonarRunner, sonarRunnerPreview | true      |
+|sonar.sourceEncoding       | UTF-8                                           | sonarRunner, sonarRunnerPreview | true      |
+|sonar.jacoco.itReportPath  | ${project.buildDir}/jacoco/integrationTest.exec | sonarRunner                     | true      |
+|sonar.host.url             |                                                 | sonarRunner, sonarRunnerPreview | true      |
+|sonar.jdbc.url             |                                                 | sonarRunner                     | true      |
+|sonar.jdbc.driverClassName | com.mysql.jdbc.Driver                           | sonarRunner                     | true      |
+|sonar.jdbc.username        | sonar                                           | sonarRunner                     | true      |
+|sonar.jdbc.password        |                                                 | sonarRunner                     | true      |
+|sonar.login                | sonar                                           | sonarRunner, sonarRunnerPreview | true      |
+|sonar.password\*           |                                                 | sonarRunner, sonarRunnerPreview | true      |
+|sonar.github.login         |                                                 | sonarRunner                     | false     |
+|sonar.github.oauth         |                                                 | sonarRunner                     | false     |
+|sonar.github.repository    |                                                 | sonarRunner                     | false     |
+|sonar.github.pullRequest   |                                                 | sonarRunner                     | false     |
 
 (\*) the *sonar.password* property is the only property which must be set in order to successfuly apply the plugin at all.
 
