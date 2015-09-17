@@ -9,11 +9,23 @@ buildscript {
     }
 }
 
-apply plugin: "com.gradle.plugin-publish"
+apply plugin: 'groovy'
+apply plugin: 'com.gradle.plugin-publish'
 apply plugin: 'maven-publish'
 
 version = '1.1.1'
 group = 'de.weltn24'
+
+sourceCompatibility = 1.6
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile gradleApi()
+    compile localGroovy()
+}
 
 pluginBundle {
     website = 'https://github.com/WeltN24/gradle-sonarqube-plugin'
@@ -29,15 +41,12 @@ pluginBundle {
     }
 }
 
-apply plugin: 'groovy'
-
-sourceCompatibility = 1.6
-
-repositories {
-    jcenter()
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId 'gradle.plugin.de.weltn24'
+            from components.java
+        }
+    }
 }
 
-dependencies {
-    compile gradleApi()
-    compile localGroovy()
-}
