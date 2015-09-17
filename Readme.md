@@ -1,31 +1,11 @@
-Gradle SonarQube Plugin
-========================================
+Gradle SonarQube Plugin ![Build Status](https://snap-ci.com/WeltN24/gradle-sonarqube-plugin/branch/master/build_image)
+=======================
 
-![Build Status](https://snap-ci.com/WeltN24/gradle-sonarqube-plugin/branch/master/build_image)
+The plugin applies [SonarQube](http://www.sonarqube.org/) configuration to projects according our best practices at [welt](https://github.com/WeltN24).
 
 ## Usage
 
-Build script snippet for use in all Gradle versions:
-
-    buildscript {
-      repositories {
-        maven {
-          url "https://plugins.gradle.org/m2/"
-        }
-      }
-      dependencies {
-        classpath "gradle.plugin.de.weltn24:sonarqube:1.1.0"
-      }
-    }
-    
-    apply plugin: "de.weltn24.sonarqube"
-    
-Build script snippet for new, incubating, plugin mechanism introduced in Gradle 2.1:
-
-    plugins {
-      id "de.weltn24.sonarqube" version "1.0.13"
-    }
-
+See [plugin portal](https://plugins.gradle.org/plugin/de.weltn24.sonarqube).
 
 ### Requires
 
@@ -63,8 +43,14 @@ Requirements for Tasks:
 
 ## Publishing
 
-Publishing is automatically done by snap-ci after a commit with increased version.
-    
-##Copyright (c) 2015 WeltN24 GmbH
+Publishing is automatically done by [SnapCI](https://snap-ci.com/WeltN24/gradle-sonarqube-plugin/branch/master) after a commit with increased version.
 
-Released under the [MIT license](https://tldrlegal.com/license/mit-license).
+## Contributing
+
+Contributions are more than welcome. Please follow the pull request [pro tips](https://guides.github.com/activities/contributing-to-open-source/#contributing) in order to submit your changes.
+
+## License 
+
+Copyright (c) 2015 WeltN24 GmbH
+
+Licensed under the [MIT license](https://tldrlegal.com/license/mit-license).
