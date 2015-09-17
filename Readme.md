@@ -38,6 +38,10 @@ Build script snippet for new, incubating, plugin mechanism introduced in Gradle 
     - sonar.login (1), (2) (default: __sonar__)
     - sonar.username (1), (2) (default: __sonar__)
     - sonar.password (1), (2)
+    - sonar.github.login (optional) (default: __none__)
+    - sonar.github.oauth (optional) (default: __none__)
+    - sonar.github.repository (optional) (default: __none__)
+    - sonar.github.pullRequest (optional) (default: __none__)
     
 --       
 Requirements for Tasks:  
