@@ -12,7 +12,7 @@ buildscript {
 apply plugin: "com.gradle.plugin-publish"
 apply plugin: 'maven-publish'
 
-version = '1.0.14'
+version = '1.1.0'
 group = 'gradle.plugin.de.weltn24'
 
 pluginBundle {

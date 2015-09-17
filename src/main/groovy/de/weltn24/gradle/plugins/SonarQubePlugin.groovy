@@ -63,6 +63,12 @@ class SonarQubePlugin implements Plugin<Project> {
         final String sonarUsername = project.hasProperty('sonar.username') ? project.getProperty('sonar.username') : 'sonar'
         final String sonarLogin = project.hasProperty('sonar.login') ? project.getProperty('sonar.login') : 'sonar'
 
+        //github pr-checker plugin support
+        final String sonarGithubLogin = project.hasProperty('sonar.github.login') ? project.getProperty('sonar.github.login') : ""
+        final String sonarGithubOAuth = project.hasProperty('sonar.github.oauth') ? project.getProperty('sonar.github.oauth') : ""
+        final String sonarGithubRepository = project.hasProperty('sonar.github.repository') ? project.getProperty('sonar.github.repository') : ""
+        final String sonarGithubPullRequest = project.hasProperty('sonar.github.pullRequest') ? project.getProperty('sonar.github.pullRequest') : ""
+
         project.sonarRunner {
             toolVersion = '2.4'
 
@@ -88,6 +94,12 @@ class SonarQubePlugin implements Plugin<Project> {
                 // code coverage
                 property "sonar.jacoco.itReportPath", "${project.buildDir}/jacoco/integrationTest.exec"
                 property "sonar.sourceEncoding", "UTF-8"
+
+                // github pr-checker
+                property "sonar.github.login", sonarGithubLogin
+                property "sonar.github.oauth", sonarGithubOAuth
+                property "sonar.github.repository", sonarGithubRepository
+                property "sonar.github.pullRequest", sonarGithubPullRequest
             }
         }
     }
