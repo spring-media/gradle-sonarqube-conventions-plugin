@@ -96,10 +96,12 @@ class SonarQubePlugin implements Plugin<Project> {
                 property "sonar.sourceEncoding", "UTF-8"
 
                 // github pr-checker
-                property "sonar.github.login", sonarGithubLogin
-                property "sonar.github.oauth", sonarGithubOAuth
-                property "sonar.github.repository", sonarGithubRepository
-                property "sonar.github.pullRequest", sonarGithubPullRequest
+                if(sonarGithubLogin && sonarGithubOAuth && sonarGithubRepository && sonarGithubPullRequest) {
+                    property "sonar.github.login", sonarGithubLogin
+                    property "sonar.github.oauth", sonarGithubOAuth
+                    property "sonar.github.repository", sonarGithubRepository
+                    property "sonar.github.pullRequest", sonarGithubPullRequest
+                }
             }
         }
     }
