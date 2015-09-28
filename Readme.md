@@ -61,6 +61,21 @@ sonarRunner {
 }
 ```
 
+## Testing
+### Integration testing
+Testing the integrity of the plugin during the development can be achieved manually by executing the following steps:
+
+ 1. Publish your new changes to your local maven repositry with `./gradlew publishToMavenLocal` (don't forget to increment the build version)
+ 2. Add the local Maven cache as a repository in an another gradle project than can integrate with the plugin:
+ 
+    ```
+    repositories {
+        mavenLocal()
+    }
+    ```
+
+ 3. Use the updated version of the plugin as a local dependency with the gradle project from the step before and run the plugin.
+
 ## Publishing
 
 Publishing is automatically done by [SnapCI](https://snap-ci.com/WeltN24/gradle-sonarqube-plugin/branch/master) after a commit with increased version.
