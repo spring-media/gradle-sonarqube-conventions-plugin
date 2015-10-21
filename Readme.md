@@ -1,4 +1,4 @@
-Gradle SonarQube Plugin ![Build Status](https://snap-ci.com/WeltN24/gradle-sonarqube-plugin/branch/master/build_image)
+Gradle SonarQube Conventions Plugin ![Build Status](https://snap-ci.com/WeltN24/gradle-sonarqube-plugin/branch/master/build_image)
 =======================
 
 The plugin applies [SonarQube](http://www.sonarqube.org/) configuration to projects according our best practices at [welt](https://github.com/WeltN24).
