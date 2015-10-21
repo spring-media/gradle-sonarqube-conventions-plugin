@@ -1,28 +1,39 @@
 Gradle SonarQube Conventions Plugin [![Build Status](https://snap-ci.com/WeltN24/gradle-sonarqube-conventions-plugin/branch/master/build_image)](https://snap-ci.com/WeltN24/gradle-sonarqube-conventions-plugin/branch/master)
 =======================
 
-The plugin applies [SonarQube](http://www.sonarqube.org/) configuration to projects according our best practices at [welt](https://github.com/WeltN24).
+The plugin applies [SonarQube](http://www.sonarqube.org/) configuration and tasks to projects according our best practices at [welt](https://github.com/WeltN24).
 
 ## Usage
 
-See [plugin portal](https://plugins.gradle.org/plugin/de.weltn24.sonarqube).
+See [plugin portal](https://plugins.gradle.org/plugin/de.weltn24.sonarqube-conventions).
+
+The plugin applies only conventions and best practices. Thus you have to configure the [sonarqube](https://plugins.gradle.org/plugin/org.sonarqube) in your project as well.
+
+Example:
+
+```
+buildscript {
+    repositories {
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+
+    dependencies {
+        classpath(
+            'org.sonarqube.gradle:gradle-sonarqube-plugin:1.0',
+            'gradle.plugin.de.weltn24:sonarqube-conventions:2.0.0'            
+        )
+    }
+}
+
+apply plugin: 'org.sonarqube'
+apply plugin: 'de.weltn24.sonarqube-conventions'
+``` 
 
 ## Conventions
 
-### Plugins
-
-The following standard Gradle plugins will be applied automatically:
-
-+ [sonar-runner](https://docs.gradle.org/current/userguide/sonar_runner_plugin.html)
-
 ### Tasks
 
-The plugin adds the follwoing tasks to the project:
-
-* sonarRunner (standard tasks from [SonarRunner plugin](https://docs.gradle.org/current/userguide/sonar_runner_plugin.html))
-* sonarRunnerPreview
-
-The custom *sonarRunnerPreview* task can be used in order to execute the SonarQube analysis in *preview* mode - a full analysis without stroring it's results in the database (see [documentation](http://www.sonarqube.org/analysis-vs-preview-vs-incremental-preview-in-sonarqube/) for details). 
+The plugin adds *sonarqubePreview* task to the project. This task can be used in order to execute the SonarQube analysis in *preview* mode - a full analysis without storing it's results in the database (see [documentation](http://www.sonarqube.org/analysis-vs-preview-vs-incremental-preview-in-sonarqube/) for details). 
 
 We use this tasks locally before pushing code changes to Git and on our PR checker pipelines.
 
@@ -30,29 +41,29 @@ We use this tasks locally before pushing code changes to Git and on our PR check
 
 | Key                       | Default value                                   | Applied for tasks               | Mandatory |
 | ------------------------- | ----------------------------------------------- | ------------------------------- | --------- |
-|sonar.projectName          | ${project.rootProject.name}                     | sonarRunner, sonarRunnerPreview | true      |
-|sonar.sourceEncoding       | UTF-8                                           | sonarRunner, sonarRunnerPreview | true      |
-|sonar.jacoco.itReportPath  | ${project.buildDir}/jacoco/integrationTest.exec | sonarRunner                     | true      |
-|sonar.host.url             |                                                 | sonarRunner, sonarRunnerPreview | true      |
-|sonar.jdbc.url             |                                                 | sonarRunner                     | true      |
-|sonar.jdbc.driverClassName | com.mysql.jdbc.Driver                           | sonarRunner                     | true      |
-|sonar.jdbc.username        | sonar                                           | sonarRunner                     | true      |
-|sonar.jdbc.password        |                                                 | sonarRunner                     | true      |
-|sonar.login                | sonar                                           | sonarRunner, sonarRunnerPreview | true      |
-|sonar.password\*           |                                                 | sonarRunner, sonarRunnerPreview | true      |
-|sonar.github.login         |                                                 | sonarRunner                     | false     |
-|sonar.github.oauth         |                                                 | sonarRunner                     | false     |
-|sonar.github.repository    |                                                 | sonarRunner                     | false     |
-|sonar.github.pullRequest   |                                                 | sonarRunner                     | false     |
+|sonar.projectName          | ${project.rootProject.name}                     | sonarqube, sonarqubePreview | true      |
+|sonar.sourceEncoding       | UTF-8                                           | sonarqube, sonarqubePreview | true      |
+|sonar.jacoco.itReportPath  | ${project.buildDir}/jacoco/integrationTest.exec | sonarqube                     | true      |
+|sonar.host.url             |                                                 | sonarqube, sonarqubePreview | true      |
+|sonar.jdbc.url             |                                                 | sonarqube                     | true      |
+|sonar.jdbc.driverClassName | com.mysql.jdbc.Driver                           | sonarqube                     | true      |
+|sonar.jdbc.username        | sonar                                           | sonarqube                     | true      |
+|sonar.jdbc.password        |                                                 | sonarqube                     | true      |
+|sonar.login                | sonar                                           | sonarqube, sonarqubePreview | true      |
+|sonar.password\*           |                                                 | sonarqube, sonarqubePreview | true      |
+|sonar.github.login         |                                                 | sonarqube                     | false     |
+|sonar.github.oauth         |                                                 | sonarqube                     | false     |
+|sonar.github.repository    |                                                 | sonarqube                     | false     |
+|sonar.github.pullRequest   |                                                 | sonarqube                     | false     |
 
 (\*) the *sonar.password* property is the only property which must be set in order to successfuly apply the plugin at all.
 
 All default values can be overwritten in the target project:
 
 ```
-sonarRunner {
-    sonarProperties {
-        // overriding properties in 'weltn24-sonarqube' plugin
+sonarqube {
+    properties {
+        // overriding properties in 'weltn24-sonarqube-conventions' plugin
         property 'sonar.projectName', 'my-fancy-name'
         
         // adding additional properties
@@ -80,7 +91,7 @@ Testing the functionality of the plugin during the development can be achieved m
 
 ## Publishing
 
-Publishing is automatically done by [SnapCI](https://snap-ci.com/WeltN24/gradle-sonarqube-plugin/branch/master) after a commit with increased version.
+Publishing is automatically done by [SnapCI](https://snap-ci.com/WeltN24/gradle-sonarqube-conventions-plugin/branch/master) after a commit with increased version.
 
 ## Contributing
 

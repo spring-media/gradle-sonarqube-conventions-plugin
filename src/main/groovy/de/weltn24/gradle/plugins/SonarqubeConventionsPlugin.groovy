@@ -3,31 +3,29 @@ package de.weltn24.gradle.plugins
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
-class SonarQubePlugin implements Plugin<Project> {
+class SonarqubeConventionsPlugin implements Plugin<Project> {
 
     void apply(Project project) {
-        final String reportDir = "${project.rootProject.buildDir}/reports/sonar"
+        final String reportDir = "${project.rootProject.buildDir}/reports/sonarqube"
 
         boolean isPreview = false
         project.gradle.taskGraph.whenReady {taskGraph ->
-            if (taskGraph.hasTask(":sonarRunnerPreview")) {
+            if (taskGraph.hasTask(":sonarqubePreview")) {
                 isPreview = true
                 configureSonarRunnerPreview(project, reportDir)
             }
         }
 
         project.gradle.taskGraph.whenReady {taskGraph ->
-            if (taskGraph.hasTask(":sonarRunner")) {
+            if (taskGraph.hasTask(":sonarqube")) {
                 configureSonarRunner(project, reportDir, isPreview)
             }
         }
 
-        project.apply(plugin: 'sonar-runner')
-
-        project.task('sonarRunnerPreview',
-                dependsOn: ['sonarRunner'],
+        project.task('sonarqubePreview',
+                dependsOn: ['sonarqube'],
                 group: 'verification',
-                description: "Analyzes root project '${project.rootProject.name}' and its subprojects with Sonar Runner in preview mode.") {
+                description: "Analyzes root project '${project.rootProject.name}' and its subprojects with sonarqube in preview mode.") {
 
             doFirst {
                 project.file(reportDir).mkdirs()
@@ -40,10 +38,10 @@ class SonarQubePlugin implements Plugin<Project> {
 
     }
 
-    // set properties for running SonarQube in preview mode
+    // set properties for running sonarqube in preview mode
     def configureSonarRunnerPreview(project, reportDir) {
-        project.sonarRunner {
-            sonarProperties {
+        project.sonarqube {
+            properties {
                 property "sonar.analysis.mode", "preview"
                 property "sonar.issuesReport.html.enable", "true"
                 property "sonar.issuesReport.html.location", "${reportDir}"
@@ -69,10 +67,8 @@ class SonarQubePlugin implements Plugin<Project> {
         final String sonarGithubRepository = project.hasProperty('sonar.github.repository') ? project.getProperty('sonar.github.repository') : ""
         final String sonarGithubPullRequest = project.hasProperty('sonar.github.pullRequest') ? project.getProperty('sonar.github.pullRequest') : ""
 
-        project.sonarRunner {
-            toolVersion = '2.4'
-
-            sonarProperties {
+        project.sonarqube {
+            properties {
                 if(!properties['sonar.projectName']){
                     property "sonar.projectName", project.rootProject.name
                 }
