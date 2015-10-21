@@ -9,7 +9,7 @@ import org.junit.Test
 import static org.junit.Assert.assertTrue
 
 
-class SonarQubePluginTest {
+class SonarqubeConventionsPluginTest {
 
     static Project project
 
@@ -17,12 +17,12 @@ class SonarQubePluginTest {
     public static void setUp(){
         project = ProjectBuilder.builder().build()
 
-        project.apply plugin: 'de.weltn24.sonarqube'
+        project.apply plugin: 'de.weltn24.sonarqube-conventions'
     }
 
     @Test
     public void sonarQubePluginAddsSonarQubeTasksToProject() {
         println 'sonarQubePluginAddsSonarQubeTasksToProject'
-        assertTrue(project.tasks.findByName('sonarRunnerPreview') instanceof Task)
+        assertTrue(project.tasks.findByName('sonarqubePreview') instanceof Task)
     }
 }
