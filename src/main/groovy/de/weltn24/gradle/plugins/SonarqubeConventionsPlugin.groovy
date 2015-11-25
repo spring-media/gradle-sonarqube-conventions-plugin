@@ -51,13 +51,9 @@ class SonarqubeConventionsPlugin implements Plugin<Project> {
 
     def configureSonarRunner(project, reportDir, isPreview) {
         final String sonarPassword = project.getProperty('sonar.password')
-        final String jdbcPassword = getJdbcPassword(project, isPreview)
 
         //default values
         final String sonarHostUrl = project.hasProperty('sonar.host.url') ? project.getProperty('sonar.host.url') : ""
-        final String sonarJdbcUrl = project.hasProperty('sonar.jdbc.url') ? project.getProperty('sonar.jdbc.url') : ""
-        final String jdbcDriverClassName = project.hasProperty('sonar.jdbc.driverClassName') ? project.getProperty('sonar.jdbc.driverClassName') : 'com.mysql.jdbc.Driver'
-        final String jdbcUsername = project.hasProperty('sonar.jdbc.username') ? project.getProperty('sonar.jdbc.username') : 'sonar'
         final String sonarUsername = project.hasProperty('sonar.username') ? project.getProperty('sonar.username') : 'sonar'
         final String sonarLogin = project.hasProperty('sonar.login') ? project.getProperty('sonar.login') : 'sonar'
 
@@ -74,12 +70,6 @@ class SonarqubeConventionsPlugin implements Plugin<Project> {
                 }
 
                 property "sonar.host.url", sonarHostUrl
-
-                // JDBC/database properties
-                property "sonar.jdbc.url", sonarJdbcUrl
-                property "sonar.jdbc.driverClassName", jdbcDriverClassName
-                property "sonar.jdbc.username", jdbcUsername
-                property "sonar.jdbc.password", jdbcPassword
 
                 // authentication
                 property "sonar.login", sonarLogin
@@ -101,11 +91,4 @@ class SonarqubeConventionsPlugin implements Plugin<Project> {
             }
         }
     }
-    String getJdbcPassword(project, isPreview) {
-        if (isPreview) {
-            return "not needed for preview"
-        }
-        return project.getProperty('sonar.jdbc.password')
-    }
-
 }
