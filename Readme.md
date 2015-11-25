@@ -29,6 +29,10 @@ apply plugin: 'org.sonarqube'
 apply plugin: 'de.weltn24.sonarqube-conventions'
 ``` 
 
+## Preconditions
+- plugin tested with Sonar [5.2+](http://docs.sonarqube.org/display/SONAR/Release+5.2+Upgrade+Notes)
+- plugin tested with [Gradle](http://gradle.org/) 2.4+ in single and multi project setups
+
 ## Conventions
 
 ### Tasks
@@ -45,10 +49,6 @@ We use this tasks locally before pushing code changes to Git and on our PR check
 |sonar.sourceEncoding       | UTF-8                                           | sonarqube, sonarqubePreview | true      |
 |sonar.jacoco.itReportPath  | ${project.buildDir}/jacoco/integrationTest.exec | sonarqube                     | true      |
 |sonar.host.url             |                                                 | sonarqube, sonarqubePreview | true      |
-|sonar.jdbc.url             |                                                 | sonarqube                     | true      |
-|sonar.jdbc.driverClassName | com.mysql.jdbc.Driver                           | sonarqube                     | true      |
-|sonar.jdbc.username        | sonar                                           | sonarqube                     | true      |
-|sonar.jdbc.password        |                                                 | sonarqube                     | true      |
 |sonar.login                | sonar                                           | sonarqube, sonarqubePreview | true      |
 |sonar.password\*           |                                                 | sonarqube, sonarqubePreview | true      |
 |sonar.github.login         |                                                 | sonarqube                     | false     |
