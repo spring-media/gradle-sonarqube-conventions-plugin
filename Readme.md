@@ -1,3 +1,5 @@
+**DEPRECATED** - use [SonarLint](http://www.sonarlint.org/) for local code analysis!
+
 Gradle SonarQube Conventions Plugin [![Build Status](https://snap-ci.com/WeltN24/gradle-sonarqube-conventions-plugin/branch/master/build_image)](https://snap-ci.com/WeltN24/gradle-sonarqube-conventions-plugin/branch/master)
 =======================
 
